@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.lang.*;
 
 public class schoolSearch {
-    private static void switchStatement(String[] array, String[][] data, int line)
+    private static void switchStatement(String[] array, String[][] data, int line, String[][] teachers, int teacherLine)
     {
                            String fName = "";
                            String lName = "";
@@ -18,23 +18,28 @@ public class schoolSearch {
            case "Student":
                 for (int i = 0; i < line; i++) {
                     if (array[1].equals(data[i][0])) {
-                        System.out.print(data[i][0] + ", "+ data[i][1] + ", ");
-                        if(array.length == 3)
-                        {
-                            if(array[2].equals("B") || array[2].equals("Bus"))
+                        System.out.print(data[i][0] + ", " + data[i][1] + ", ");
+                        if (array.length == 3) {
+                            if (array[2].equals("B") || array[2].equals("Bus"))
                                 System.out.print(data[i][4] + "\n");
-                        }
-                        else {
-                            System.out.println(data[i][2]+ ", "+ data[i][3] +", "+ data[i][7] + " " + data[i][6]);
+                        } else {
+                            System.out.print(data[i][2] + ", " + data[i][3] + ", ");
+                            for (int j = 0; j < teacherLine; j++) {
+                                if (data[i][3].equals(teachers[j][2])) {
+                                    System.out.print(teachers[j][0] + ", " + teachers[j][1] + "\n");
+                                }
+                            }
                         }
                     }
                 }
-                break;
             case "T":
             case "Teacher":
-                for (int i = 0; i < line; i++) {
-                    if (array[1].equals(data[i][6])) {
-                        System.out.println(data[i][0] + ", " + data[i][1]);
+                for (int i = 0; i < teacherLine; i++) {
+                    if (array[1].equals(teachers[i][0])) {
+                        for(int j = 0; j < line; j++) {
+                            if(teachers[i][2].equals(data[j][3]))
+                                System.out.println(data[j][0] + ", " + data[j][1]);
+                        }
                     }
                 }
                 break;
@@ -42,7 +47,7 @@ public class schoolSearch {
             case "Bus":
                 for (int i = 0; i < line; i++) {
                     if (array[1].equals(data[i][4])) {
-                        System.out.println(data[i][1] + " " + data[i][0]);
+                        System.out.println(data[i][1] + " " + data[i][0] + ", " + data[i][2] + ", " + data[i][3]);
                     }
                 }
                 break;
@@ -137,6 +142,19 @@ public class schoolSearch {
                    System.out.println(i + ": " + students);
                 }
                 break;
+
+
+            case "CS":
+            case "ClassroomS":
+
+                for (int i = 0; i < line; i++)
+                {
+                    if(array[1].equals(data[i][3]))
+                    {
+                        System.out.println(data[i][0] + ", " + data[i][1]);
+                    }
+                }
+                break;
             default:
         }
     }
@@ -159,7 +177,7 @@ public class schoolSearch {
         int line = 0;
 
         while (Read.hasNextLine()) {
-            String[] array1 = Read.nextLine().split(",");
+            String[] array1 = Read.nextLine().split(", |,");
             for (int i = 0; i < array1.length; i++) {
                 studentData[line][i] = array1[i];
             }
@@ -188,7 +206,7 @@ public class schoolSearch {
 
             String[] array2 = in.split(": | ");
 
-            switchStatement(array2, studentData, line);
+            switchStatement(array2, studentData, line, teacherData, teacherLine);
             System.out.println("Enter command :");
         }
     }
