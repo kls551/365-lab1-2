@@ -21,8 +21,23 @@
       Sep 28: 10-10:30
    Writeup: Kaitlin
       .25 hours, updated along the way
+
 5) We almost parsed both files and appended teacher information to each student array accordingly.
    However, we decided to simply treat them as separate entities and use elements of each as keys
    to indicate what part of the other data set we wanted. This meant that we had to have two 2D arrays,
    one for students and one for teachers. To accomodate new inputs, we simply added the extra switch cases.
    This didn't impact much other than the length of the program.
+6) New commands:
+   CS: | ClassroomS: <room #>
+      ~ lists all students assigned to a room number
+   CT: <room #>
+      ~ lists all teachers teaching in that room
+   GT: <grade>
+      ~ lists all teachers teaching a grade
+   R
+      ~ reports enrollments broken down by classroom
+   Stat | Statistics
+      ~ lists:
+      average GPA per grade
+      average GPA per teacher 
+      average GPA per bus route
