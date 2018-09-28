@@ -1,5 +1,3 @@
-import sun.rmi.server.InactiveGroupException;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -259,8 +257,8 @@ public class schoolSearch {
                     if(!grades.contains(data[i][2]))
                     {
                         grades.add(data[i][2]);
-                        System.out.println("Grade " + data[i][2]
-                                + " average GPA: " + average/count);
+                        System.out.printf("Grade " + data[i][2]
+                                + " average GPA: %.2f %n", average/count);
                     }
                 }
                 List<String> teachrs = new ArrayList<String>();
@@ -290,7 +288,7 @@ public class schoolSearch {
                         {
                             if(teachers[m][2].equals(data[k][3]))
                             {
-                                System.out.println(tName +"'s student average GPA: " + average/count);
+                                System.out.printf(tName +"'s student average GPA: %.2f %n", average/count);
                                 break;
                             }
                         }
@@ -316,7 +314,7 @@ public class schoolSearch {
                                 count++;
                             }
                         }
-                        System.out.println("Route " + data[r][4] + " " + average / count);
+                        System.out.printf("Route " + data[r][4] + " %.2f %n", average / count);
                     }
                 }
 
