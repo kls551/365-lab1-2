@@ -2,7 +2,8 @@
 2) We decided to stick with the old program and add on to it, instead of starting anew.
    Soe worked in IntelliJ and Kaitlin worked on the Cal Poly servers in vim. The program
    was written in Java.
-3) 
+3) Two 2D arrays were used as tables to store the teacher and student information. We used
+   2D arrays because they can be quickly accessed with for loops and indexing.
 
 4)Tasks:
    Change parsing: Soe
@@ -30,14 +31,19 @@
 6) New commands:
    CS: | ClassroomS: <room #>
       ~ lists all students assigned to a room number
+      Ex: CS: 101
    CT: <room #>
       ~ lists all teachers teaching in that room
+      Ex: CT: 101
    GT: <grade>
       ~ lists all teachers teaching a grade
+      Ex: GT: 5
    R
       ~ reports enrollments broken down by classroom
+      Ex: R
    Stat | Statistics
       ~ lists:
       average GPA per grade
       average GPA per teacher 
       average GPA per bus route
+      Ex: Stat
