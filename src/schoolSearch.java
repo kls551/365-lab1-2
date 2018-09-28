@@ -13,6 +13,8 @@ public class schoolSearch {
                            String GPA   = "";  
                            String teach = "";
                            String bus   = "";
+        int[] printer = {12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12};
+        int[] enrollment = {0,0,0,0,0,0,0,0,0,0,0,0,0};
         switch (array[0]) {
            case "S":
            case "Student":
@@ -155,6 +157,44 @@ public class schoolSearch {
                     }
                 }
                 break;
+
+            case "CT":
+                for (int i = 0; i < teacherLine; i++)
+                {
+                    if(array[1].equals(teachers[i][2]))
+                    {
+                        System.out.println(teachers[i][0] + ", " + teachers[i][1]);
+                    }
+                }
+                break;
+
+            case "GT":
+                for (int i = 0; i < line; i++)
+                {
+                    if(array[1].equals(data[i][2])) {
+                        for (int j = 0; j < teacherLine; j++) {
+                            if (data[i][3].equals(teachers[j][2]) && printer[j] != 50) {
+                                System.out.println(teachers[j][0] + ", " + teachers[j][1]);
+                                printer[j] = 50;
+                            }
+                        }
+                    }
+                }
+                break;
+
+            case "R":
+            case "Report":
+                for (int i = 0; i < line; i++)
+                {
+                    int roomNumber = Integer.parseInt(data[i][3]) - 100;
+                    enrollment[roomNumber] = enrollment[roomNumber] + 1;
+                }
+                for (int j = 1; j < 13; j++)
+                {
+                    System.out.println("1" + String.format("%02d", j) + ": " + enrollment[j]);
+                }
+                break;
+
             default:
         }
     }
@@ -165,7 +205,7 @@ public class schoolSearch {
         File file1 = new File("teachers.txt");
         if(!file.exists() && !file1.exists())
         {
-            System.out.println("One of more fIles not exist.");
+            System.out.println("One of more files do not exist.");
             System.exit(1);
         }
 
