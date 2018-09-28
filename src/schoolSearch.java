@@ -1,7 +1,11 @@
+import sun.rmi.server.InactiveGroupException;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.lang.*;
 
@@ -57,7 +61,7 @@ public class schoolSearch {
                     }
                 }
                 break;
-            // Traceability: implements requirement R9
+            // Traceability: implements requirement R9 & R7
             case "G":
             case "Grade":
                 double high = 0;
@@ -167,7 +171,10 @@ public class schoolSearch {
             // Traceability: implements requirement NR1
             case "CS":
             case "ClassroomS":
-
+                if(Integer.parseInt(array[1]) < 101 || Integer.parseInt(array[1]) > 112) {
+                    System.out.println("Invalid Class.");
+                    break;
+                }
                 for (int i = 0; i < line; i++)
                 {
                     if(array[1].equals(data[i][3]))
@@ -179,6 +186,11 @@ public class schoolSearch {
 
                //  Traceability: implements requirement NR2
             case "CT":
+            case "ClassroomT":
+                if(Integer.parseInt(array[1]) < 101 || Integer.parseInt(array[1]) > 112) {
+                    System.out.println("Invalid Class.");
+                    break;
+                }
                 for (int i = 0; i < teacherLine; i++)
                 {
                     if(array[1].equals(teachers[i][2]))
@@ -190,6 +202,11 @@ public class schoolSearch {
 
             //Traceability: implements requirement NR3
             case "GT":
+            case "GradeTeacher":
+                if(Integer.parseInt(array[1]) > 6 || Integer.parseInt(array[1]) < 1) {
+                    System.out.println("Invalid Grade.");
+                    break;
+                }
                 for (int i = 0; i < line; i++)
                 {
                     if(array[1].equals(data[i][2])) {
@@ -217,6 +234,92 @@ public class schoolSearch {
                 }
                 break;
 
+            //Traceability: implements requirement NR5
+            case "Stat":
+            case "Statistics":
+                List<String> grades = new ArrayList<String>();
+                double average = 0;
+                count = 0;
+                String tName;
+                /* average GPA per grade */
+                System.out.println("");
+                System.out.println("Average GPA per grade");
+                for(int i = 0; i < line; i++)
+                {
+                    average = 0;
+                    count   = 0;
+                    for(int j = 0; j < line; j++)
+                    {
+                        if(data[i][2].equals(data[j][2]))
+                        {
+                            average += Double.parseDouble(data[j][5]);
+                            count++;
+                        }
+                    }
+                    if(!grades.contains(data[i][2]))
+                    {
+                        grades.add(data[i][2]);
+                        System.out.println("Grade " + data[i][2]
+                                + " average GPA: " + average/count);
+                    }
+                }
+                List<String> teachrs = new ArrayList<String>();
+
+
+                // average GPA of students under each teacher
+                System.out.println("");
+                System.out.println("Average GPA per teacher");
+                for(int k = 0; k < teacherLine; k++) // loop students
+                {
+                    average = 0;
+                    count   = 0;
+                    tName = teachers[k][1] + " " + teachers[k][0];
+                    if(!teachrs.contains(data[k][3])) //if you havent checked yet
+                    {
+                        for(int l = 0; l < line; l++) //loop students
+                        {
+                            if(teachers[k][2].equals(data[l][3])) // if same classroom
+                            {
+                           /*System.out.println("NEW ----" + data[l][0] + " GPA: "
+                                 + data[l][5]);*/
+                                average += Double.parseDouble(data[l][5]);
+                                count++;
+                            }
+                        }
+                        for(int m = 0; m < teacherLine; m++) // find name of teacher
+                        {
+                            if(teachers[m][2].equals(data[k][3]))
+                            {
+                                System.out.println(tName +"'s student average GPA: " + average/count);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                /* average GPA of students under each bus route */
+                List<String> routes = new ArrayList<String>();
+                System.out.println("");
+                System.out.println("Average GPA per bus route");
+                for(int r = 0; r < line; r++) // loop students
+                {
+                    average = 0;
+                    count = 0;
+                    if (!routes.contains(data[r][4])) //if you havent checked yet
+                    {
+                        routes.add(data[r][4]);
+                        for (int s = 0; s < line; s++) //loop students
+                        {
+                            if (data[r][4].equals(data[s][4])) // if same route
+                            {
+                                average += Double.parseDouble(data[s][5]);
+                                count++;
+                            }
+                        }
+                        System.out.println("Route " + data[r][4] + " " + average / count);
+                    }
+                }
+
             default:
         }
     }
@@ -225,6 +328,10 @@ public class schoolSearch {
 
         File file = new File("list.txt");
         File file1 = new File("teachers.txt");
+
+        /* Traceability:
+         * implements requirement R13
+         */
         if(!file.exists() && !file1.exists())
         {
             System.out.println("One of more files do not exist.");
@@ -254,8 +361,10 @@ public class schoolSearch {
             }
             teacherLine++;
         }
-
-        //start of the loop
+        
+        /* Traceability
+         * implements requirement R2
+         */
         System.out.println("Enter command :");
         Scanner input = new Scanner(System.in);
         String in = "start";
