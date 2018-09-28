@@ -16,6 +16,8 @@ public class schoolSearch {
         int[] printer = {12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12};
         int[] enrollment = {0,0,0,0,0,0,0,0,0,0,0,0,0};
         switch (array[0]) {
+
+            // Traceability: implements requirement R4, R5
            case "S":
            case "Student":
                 for (int i = 0; i < line; i++) {
@@ -34,6 +36,7 @@ public class schoolSearch {
                         }
                     }
                 }
+               // Traceability: implements requirement R6
             case "T":
             case "Teacher":
                 for (int i = 0; i < teacherLine; i++) {
@@ -45,6 +48,7 @@ public class schoolSearch {
                     }
                 }
                 break;
+            // Traceability: implements requirement R8
             case "B":
             case "Bus":
                 for (int i = 0; i < line; i++) {
@@ -53,6 +57,7 @@ public class schoolSearch {
                     }
                 }
                 break;
+            // Traceability: implements requirement R9
             case "G":
             case "Grade":
                 double high = 0;
@@ -70,7 +75,13 @@ public class schoolSearch {
                            fName = data[l][1];
                            lName = data[l][0];
                            GPA   = data[l][5];
-                           teach = data[l][6];
+//                           teach = data[l][6];
+                            for(int j = 0; j < teacherLine; j++)
+                            {
+                                if (data[l][3].equals(teachers[j][2])) {
+                                    teach = teachers[j][0];
+                                }
+                            }
                            bus   = data[l][4];
 
                            high = Double.parseDouble(data[l][5]);
@@ -92,7 +103,13 @@ public class schoolSearch {
                            fName = data[l][1];
                            lName = data[l][0];
                            GPA   = data[l][5];
-                           teach = data[l][6];
+//                           teach = data[l][6];
+                            for(int j = 0; j < teacherLine; j++)
+                            {
+                                if (data[l][3].equals(teachers[j][2])) {
+                                    teach = teachers[j][0];
+                                }
+                            }
                            bus   = data[l][4];
 
                            low = Double.parseDouble(data[l][5]);
@@ -113,6 +130,7 @@ public class schoolSearch {
                 }
                 }
                 break;
+            // Traceability: implements requirement R10
             case "A":
             case "Average":
             double sum = 0;
@@ -127,6 +145,7 @@ public class schoolSearch {
                }
                System.out.println(array[1] + " - Average is: " + sum/count);
                 break;
+            // Traceability: implements requirement R11
             case "I":
             case "Info":
                 if(array.length != 1)
@@ -145,7 +164,7 @@ public class schoolSearch {
                 }
                 break;
 
-
+            // Traceability: implements requirement NR1
             case "CS":
             case "ClassroomS":
 
@@ -158,6 +177,7 @@ public class schoolSearch {
                 }
                 break;
 
+               //  Traceability: implements requirement NR2
             case "CT":
                 for (int i = 0; i < teacherLine; i++)
                 {
@@ -168,6 +188,7 @@ public class schoolSearch {
                 }
                 break;
 
+            //Traceability: implements requirement NR3
             case "GT":
                 for (int i = 0; i < line; i++)
                 {
@@ -182,6 +203,7 @@ public class schoolSearch {
                 }
                 break;
 
+            //Traceability: implements requirement NR4
             case "R":
             case "Report":
                 for (int i = 0; i < line; i++)
@@ -238,6 +260,7 @@ public class schoolSearch {
         Scanner input = new Scanner(System.in);
         String in = "start";
 
+        //Traceability: implements requirement R12
         while (!in.equals("Q") && !in.equals("Quit")){
             in = input.nextLine();
 
