@@ -1,9 +1,28 @@
-Kaitlin Bleich, Kyaw Soe
+1) Kaitlin Bleich, Kyaw Soe
+2) We decided to stick with the old program and add on to it, instead of starting anew.
+   Soe worked in IntelliJ and Kaitlin worked on the Cal Poly servers in vim. The program
+   was written in Java.
+3) 
 
-Tasks:
+4)Tasks:
    Change parsing: Soe
       Sep 26: 4-5
    NR1: Soe
       Sep 26: 5:30 - 5:45
    NR2: Kaitlin
-      Sep 27: 2-
+      Sep 27: 2-4
+   NR3-NR4: Soe
+      Sep 27: 4-6
+   NR5: Kaitlin
+      Sep 27: 8-11pm
+   Tracing: Kaitlin
+      Sep 28: 11-11:15
+   Testing: Soe
+      Sep 28: 10-10:30
+   Writeup: Kaitlin
+      .25 hours, updated along the way
+5) We almost parsed both files and appended teacher information to each student array accordingly.
+   However, we decided to simply treat them as separate entities and use elements of each as keys
+   to indicate what part of the other data set we wanted. This meant that we had to have two 2D arrays,
+   one for students and one for teachers. To accomodate new inputs, we simply added the extra switch cases.
+   This didn't impact much other than the length of the program.

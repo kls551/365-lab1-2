@@ -5,6 +5,9 @@ import java.io.FileReader;
 import java.util.*;
 import java.lang.*;
 
+/* Traceability:
+ * implements requirements 
+ */
 public class schoolSearch {
     private static void switchStatement(String[] array, String[][] data, int line, String[][] teachers, int teacherLine)
     {
@@ -16,6 +19,9 @@ public class schoolSearch {
         int[] printer = {12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12};
         int[] enrollment = {0,0,0,0,0,0,0,0,0,0,0,0,0};
         switch (array[0]) {
+            /* Traceability:
+             * implements requirements R4 and R5
+             */
            case "S":
            case "Student":
                 for (int i = 0; i < line; i++) {
@@ -34,6 +40,9 @@ public class schoolSearch {
                         }
                     }
                 }
+            /* Traceability:
+             * implements requirement R6
+             */
             case "T":
             case "Teacher":
                 for (int i = 0; i < teacherLine; i++) {
@@ -45,6 +54,9 @@ public class schoolSearch {
                     }
                 }
                 break;
+            /* Traceability:
+             * implements requirement R8
+             */
             case "B":
             case "Bus":
                 for (int i = 0; i < line; i++) {
@@ -53,6 +65,9 @@ public class schoolSearch {
                     }
                 }
                 break;
+            /* Traceability:
+             * implements requirements R7 and R9
+             */
             case "G":
             case "Grade":
                 double high = 0;
@@ -113,6 +128,10 @@ public class schoolSearch {
                 }
                 }
                 break;
+
+            /* Traceability:
+             * implements requirement R10
+             */
             case "A":
             case "Average":
             double sum = 0;
@@ -127,6 +146,9 @@ public class schoolSearch {
                }
                System.out.println(array[1] + " - Average is: " + sum/count);
                 break;
+            /* Traceability:
+             * implements requirement NR11
+             */
             case "I":
             case "Info":
                 if(array.length != 1)
@@ -144,8 +166,9 @@ public class schoolSearch {
                    System.out.println(i + ": " + students);
                 }
                 break;
-
-
+            /* Traceability:
+             * implements requirement NR1
+             */
             case "CS":
             case "ClassroomS":
 
@@ -158,6 +181,9 @@ public class schoolSearch {
                 }
                 break;
 
+            /* Traceability:
+             * implements requirement NR2
+             */
             case "CT":
                 for (int i = 0; i < teacherLine; i++)
                 {
@@ -167,7 +193,9 @@ public class schoolSearch {
                     }
                 }
                 break;
-
+            /* Traceability:
+             * implements requirement NR3
+             */
             case "GT":
                 for (int i = 0; i < line; i++)
                 {
@@ -181,7 +209,9 @@ public class schoolSearch {
                     }
                 }
                 break;
-
+            /* Traceability:
+             * implements requirement NR4
+             */
             case "R":
             case "Report":
                 for (int i = 0; i < line; i++)
@@ -194,6 +224,8 @@ public class schoolSearch {
                     System.out.println("1" + String.format("%02d", j) + ": " + enrollment[j]);
                 }
                 break;
+            /*Traceability: 
+             * implements requirement NR5*/
             case "Stat":
             case "Statistics":
                 List<String> grades = new ArrayList<String>();
@@ -286,6 +318,9 @@ public class schoolSearch {
     public static void main(String[] args) throws Exception {
 
         File file = new File("list.txt");
+      /* Traceability:
+       * implements requirement R13
+       */
         File file1 = new File("teachers.txt");
         if(!file.exists() && !file1.exists())
         {
@@ -317,11 +352,16 @@ public class schoolSearch {
             teacherLine++;
         }
 
-        //start of the loop
+      /* Traceability
+       * implements requirement R2
+       */
         System.out.println("Enter command :");
         Scanner input = new Scanner(System.in);
         String in = "start";
 
+      /* Traceability
+       * implements requirement R12
+       */
         while (!in.equals("Q") && !in.equals("Quit")){
             in = input.nextLine();
 
